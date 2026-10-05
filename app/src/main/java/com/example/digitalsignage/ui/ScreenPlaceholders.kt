@@ -16,11 +16,6 @@ fun CameraMeasurementScreen(settings: SignageSettings, onBack: () -> Unit) {
 }
 
 @Composable
-fun TouchMeasurementScreen(settings: SignageSettings, onBack: () -> Unit) {
-    MeasurementPlaceholder("タッチ計測", onBack)
-}
-
-@Composable
 private fun MeasurementPlaceholder(title: String, onBack: () -> Unit) {
     Column(
         Modifier.fillMaxSize(),
