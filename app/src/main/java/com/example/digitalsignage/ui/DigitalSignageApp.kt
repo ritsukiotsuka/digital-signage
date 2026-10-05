@@ -13,11 +13,11 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 
-enum class AppScreen { HOME, CAMERA, TOUCH, SETTINGS }
+enum class AppScreen { CAMERA, TOUCH, SETTINGS }
 
 @Composable
 fun DigitalSignageApp(viewModel: AppViewModel = viewModel()) {
-    var screen by remember { mutableStateOf(AppScreen.HOME) }
+    var screen by remember { mutableStateOf(AppScreen.TOUCH) }
     val settings by viewModel.settings.collectAsStateWithLifecycle()
 
     AnimatedContent(
@@ -26,20 +26,19 @@ fun DigitalSignageApp(viewModel: AppViewModel = viewModel()) {
         label = "screen",
     ) { target ->
         when (target) {
-            AppScreen.HOME -> HomeScreen(
+            AppScreen.CAMERA -> CameraMeasurementScreen(settings, onBack = { screen = AppScreen.TOUCH })
+            AppScreen.TOUCH -> TouchMeasurementScreen(
+                settings = settings,
                 onCameraClick = { screen = AppScreen.CAMERA },
-                onTouchClick = { screen = AppScreen.TOUCH },
                 onSettingsClick = { screen = AppScreen.SETTINGS },
             )
-            AppScreen.CAMERA -> CameraMeasurementScreen(settings, onBack = { screen = AppScreen.HOME })
-            AppScreen.TOUCH -> TouchMeasurementScreen(settings, onBack = { screen = AppScreen.HOME })
             AppScreen.SETTINGS -> SettingsScreen(
                 settings = settings,
                 onSave = {
                     viewModel.saveSettings(it)
-                    screen = AppScreen.HOME
+                    screen = AppScreen.TOUCH
                 },
-                onBack = { screen = AppScreen.HOME },
+                onBack = { screen = AppScreen.TOUCH },
             )
         }
     }
