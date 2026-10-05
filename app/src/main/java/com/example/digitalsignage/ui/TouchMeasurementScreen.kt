@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -142,7 +143,7 @@ fun TouchMeasurementScreen(
             visible = step == TouchStep.DRAW,
             enter = fadeIn() + scaleIn(initialScale = .92f),
             exit = fadeOut() + scaleOut(targetScale = .92f),
-            modifier = Modifier.align(Alignment.TopCenter),
+            modifier = Modifier.align(Alignment.TopStart),
         ) {
             IntegratedInstruction()
         }
@@ -212,31 +213,28 @@ private fun TouchRuler(settings: SignageSettings) {
 @Composable
 private fun IntegratedInstruction() {
     Card(
-        modifier = Modifier.padding(start = 94.dp, end = 24.dp, top = 24.dp),
-        shape = RoundedCornerShape(28.dp),
+        modifier = Modifier.padding(start = 18.dp, top = 94.dp).width(216.dp),
+        shape = RoundedCornerShape(24.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = .92f)),
         elevation = CardDefaults.cardElevation(7.dp),
     ) {
-        Row(
-            modifier = Modifier.padding(horizontal = 22.dp, vertical = 16.dp),
-            verticalAlignment = Alignment.CenterVertically,
+        Column(
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 14.dp),
         ) {
-            Text("🦒", fontSize = 42.sp)
-            Column(Modifier.padding(start = 12.dp)) {
-                Text(
-                    "せなかを モニターに ぴったり！",
-                    fontSize = 19.sp,
-                    fontWeight = FontWeight.Black,
-                    color = Forest,
-                )
-                Text(
-                    "あたまの てっぺんに  よこ線を ひこう  👉",
-                    fontSize = 15.sp,
-                    lineHeight = 21.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Bark,
-                )
-            }
+            Text(
+                "せなかを ぴったり！",
+                fontSize = 17.sp,
+                fontWeight = FontWeight.Black,
+                color = Forest,
+            )
+            Text(
+                "あたまの上に\nよこ線を ひこう  👉",
+                modifier = Modifier.padding(top = 3.dp),
+                fontSize = 14.sp,
+                lineHeight = 19.sp,
+                fontWeight = FontWeight.Bold,
+                color = Bark,
+            )
         }
     }
 }
