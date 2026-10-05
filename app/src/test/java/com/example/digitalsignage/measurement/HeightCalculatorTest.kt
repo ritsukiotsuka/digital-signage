@@ -30,12 +30,15 @@ class HeightCalculatorTest {
     @Test
     fun cameraHeightIsDerivedFromTwoImageRays() {
         val settings = SignageSettings(
+            cameraHeightCm = 180f,
             subjectDistanceCm = 200f,
             cameraVerticalFovDegrees = 60f,
+            cameraTiltDegrees = -20f,
         )
 
-        val height = HeightCalculator.fromCamera(headY = 0.15f, footY = 0.85f, settings)
+        // Synthetic rays for a 120 cm subject standing 220 cm from a 180 cm-high camera.
+        val height = HeightCalculator.fromCamera(headY = 0.4282f, footY = 0.8031f, settings)
 
-        assertEquals(161.66f, height, 0.1f)
+        assertEquals(120f, height, 0.2f)
     }
 }

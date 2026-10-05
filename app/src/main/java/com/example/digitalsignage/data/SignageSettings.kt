@@ -6,7 +6,7 @@ data class SignageSettings(
     val cameraHeightCm: Float = 178f,
     val subjectDistanceCm: Float = 220f,
     val cameraVerticalFovDegrees: Float = 50f,
-    val cameraTiltDegrees: Float = 0f,
+    val cameraTiltDegrees: Float = -20f,
     val heightCorrectionCm: Float = 0f,
     val countdownSeconds: Int = 3,
 )

@@ -18,7 +18,7 @@ class SettingsRepository(private val context: Context) {
             cameraHeightCm = preferences[Keys.CAMERA_HEIGHT] ?: 178f,
             subjectDistanceCm = preferences[Keys.SUBJECT_DISTANCE] ?: 220f,
             cameraVerticalFovDegrees = preferences[Keys.CAMERA_VERTICAL_FOV] ?: 50f,
-            cameraTiltDegrees = preferences[Keys.CAMERA_TILT] ?: 0f,
+            cameraTiltDegrees = preferences[Keys.CAMERA_TILT] ?: -20f,
             heightCorrectionCm = preferences[Keys.HEIGHT_CORRECTION] ?: 0f,
             countdownSeconds = preferences[Keys.COUNTDOWN_SECONDS] ?: 3,
         )

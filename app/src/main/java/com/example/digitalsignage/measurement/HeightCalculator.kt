@@ -24,9 +24,17 @@ object HeightCalculator {
         settings: SignageSettings,
     ): Float {
         val headAngle = rayAngle(headY, settings)
-        val footAngle = rayAngle(footY, settings)
-        return (settings.subjectDistanceCm * (tan(headAngle) - tan(footAngle)) +
+        val distance = estimatedDistanceFromFoot(footY, settings)
+            ?.takeIf { it in settings.subjectDistanceCm * .4f..settings.subjectDistanceCm * 2.5f }
+            ?: settings.subjectDistanceCm
+        return (settings.cameraHeightCm + distance * tan(headAngle) +
             settings.heightCorrectionCm).coerceAtLeast(0.0).toFloat()
+    }
+
+    fun estimatedDistanceFromFoot(footY: Float, settings: SignageSettings): Float? {
+        val footTangent = tan(rayAngle(footY, settings))
+        if (footTangent >= -0.01) return null
+        return (-settings.cameraHeightCm / footTangent).toFloat()
     }
 
     private fun rayAngle(normalizedY: Float, settings: SignageSettings): Double {

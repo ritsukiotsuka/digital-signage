@@ -22,6 +22,7 @@ import com.example.digitalsignage.ui.theme.Forest
 import com.example.digitalsignage.ui.theme.Leaf
 import com.example.digitalsignage.ui.theme.Sky
 import com.example.digitalsignage.ui.theme.Sun
+import java.util.Locale
 
 @Composable
 fun ForestBackground(modifier: Modifier = Modifier, content: @Composable BoxScope.() -> Unit) {
@@ -59,4 +60,4 @@ fun ForestBackground(modifier: Modifier = Modifier, content: @Composable BoxScop
     }
 }
 
-fun formatHeight(heightCm: Float): String = String.format("%.1f cm", heightCm)
+fun formatHeight(heightCm: Float): String = String.format(Locale.JAPAN, "%.1f cm", heightCm)
